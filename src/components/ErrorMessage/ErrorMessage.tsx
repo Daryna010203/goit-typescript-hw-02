@@ -1,6 +1,6 @@
 import css from './ErrorMessage.module.css';
 
-const ErrorMessage = ({ error }) => {
+const ErrorMessage = ({ error }: any) => {
   return (
     <div>
       <p>

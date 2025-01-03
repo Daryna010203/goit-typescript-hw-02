@@ -10,16 +10,20 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
 import ImageModal from '../ImageModal/ImageModal.jsx';
 import Loader from '../Loader/Loader.jsx';
 
+import { Image, ApiResponse, SelectedImage } from './App.types';
+
 const App = () => {
-  const [images, setImages] = useState([]);
+  const [images, setImages] = useState<Image[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
-  const [query, setQuery] = useState(null);
+  const [error, setError] = useState<string | null>(null);
+  const [query, setQuery] = useState<string | null>(null);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState<SelectedImage | null>(
+    null
+  );
 
-  const onSearch = userSearch => {
+  const onSearch = (userSearch: string | null): void => {
     setQuery(userSearch);
     setPage(1);
     setImages([]);
@@ -32,18 +36,20 @@ const App = () => {
         setError(null);
         setLoading(true);
 
-        const response = await axios.get(
+        const response = await axios.get<ApiResponse>(
           `https://api.unsplash.com/search/photos?client_id=31vOygG6dJTDM4WYDN9lcflKaCM7oYZNQcHe6lBV_Co&page=${page}&per_page=12&query=${query}`
         );
         console.log(response);
 
         const fetchedImages = response.data.results;
+
         const totalPages = response.data.total_pages;
 
         setImages(prevImages => [...prevImages, ...fetchedImages]);
         setTotalPages(totalPages);
-      } catch (error) {
+      } catch (error: any) {
         setError(error.message);
+        console.log(error);
       } finally {
         setLoading(false);
       }
@@ -68,7 +74,7 @@ const App = () => {
     }
   }, [images, page]);
 
-  const openImageModal = (imageUrl, imageAlt) => {
+  const openImageModal = (imageUrl: string, imageAlt: string): void => {
     setSelectedImage({ imageUrl, imageAlt });
   };
 

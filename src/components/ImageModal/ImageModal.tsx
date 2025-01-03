@@ -1,11 +1,17 @@
 import ReactModal from 'react-modal';
+
 import { useEffect } from 'react';
-
 import css from './ImageModal.module.css';
+import { ImageModalProps } from './ImageModal.types';
 
-const ImageModal = ({ isOpen, onRequestClose, imageUrl, imageAlt }) => {
+const ImageModal: React.FC<ImageModalProps> = ({
+  isOpen,
+  onRequestClose,
+  imageUrl,
+  imageAlt,
+}) => {
   useEffect(() => {
-    const handleEsc = event => {
+    const handleEsc = (event: KeyboardEvent): void => {
       if (event.key === 'Escape') {
         onRequestClose();
       }
