@@ -32,7 +32,7 @@ const ImageModal: React.FC<ImageModalProps> = ({
       <button onClick={onRequestClose} className={css.closeButton}>
         ✖
       </button>
-      <img src={imageUrl} alt={imageAlt} className={css.largeImage} />
+      <img src={imageUrl} alt={imageAlt} className={css.modalImage} />
     </ReactModal>
   );
 };

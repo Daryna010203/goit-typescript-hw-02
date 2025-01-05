@@ -5,6 +5,9 @@ import { TfiSearch } from 'react-icons/tfi';
 import toast, { Toaster } from 'react-hot-toast';
 import { SearchBarProps } from './SearchBar.types';
 import { FormikHelpers } from 'formik';
+import Paper from '@mui/material/Paper';
+import SearchIcon from '@mui/icons-material/Search';
+import IconButton from '@mui/material/IconButton';
 
 const initialValues = { userSearch: '' };
 
@@ -24,28 +27,45 @@ const SearchBar = ({ onSearch }: SearchBarProps) => {
 
   return (
     <header className={css.header}>
-      <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-        <Form className={css.form}>
-          <div>
-            <button type="submit" name="userSearch" className={css.Btn}>
-              <TfiSearch />
-            </button>
-            <Field
-              type="text"
-              className={css.text}
-              name="userSearch"
-              placeholder="Search images and photos"
-              autoFocus
-            />
-            <ErrorMessage
-              className={css.errorMessage}
-              name="userSearch"
-              component="span"
-            />
-          </div>
-          <Toaster />
-        </Form>
-      </Formik>
+      <Paper
+        component="div"
+        sx={{
+          p: '8px 8px',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          bgcolor: '#cfe8fc',
+        }}
+      >
+        <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+          <Form className={css.form}>
+            <div>
+              <IconButton
+                type="submit"
+                name="userSearch"
+                sx={{ p: '10px', marginRight: '10px' }}
+                aria-label="search"
+              >
+                <SearchIcon />
+              </IconButton>
+
+              <Field
+                type="text"
+                className={css.text}
+                name="userSearch"
+                placeholder="Search images and photos"
+                autoFocus
+              />
+              <ErrorMessage
+                className={css.errorMessage}
+                name="userSearch"
+                component="span"
+              />
+            </div>
+            <Toaster />
+          </Form>
+        </Formik>
+      </Paper>
     </header>
   );
 };
