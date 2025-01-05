@@ -1,12 +1,15 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
 
 import App from './components/App/App';
-import 'modern-normalize';
+
 import './index.css';
 
 createRoot(document.getElementById('root') as HTMLElement).render(
   <StrictMode>
-    <App />
+    <ScopedCssBaseline enableColorScheme>
+      <App />
+    </ScopedCssBaseline>
   </StrictMode>
 );

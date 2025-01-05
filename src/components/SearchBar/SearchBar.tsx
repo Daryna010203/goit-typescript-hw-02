@@ -3,11 +3,16 @@ import { Field, Form, Formik, ErrorMessage } from 'formik';
 import { TfiSearch } from 'react-icons/tfi';
 
 import toast, { Toaster } from 'react-hot-toast';
+import { SearchBarProps } from './SearchBar.types';
+import { FormikHelpers } from 'formik';
 
 const initialValues = { userSearch: '' };
 
-const SearchBar = ({ onSearch }) => {
-  const handleSubmit = (values, actions) => {
+const SearchBar = ({ onSearch }: SearchBarProps) => {
+  const handleSubmit = (
+    values: { userSearch: string },
+    actions: FormikHelpers<{ userSearch: string }>
+  ) => {
     if (!values.userSearch.trim()) {
       toast.error('Enter a search word');
       return;

@@ -1,15 +1,12 @@
 import css from './App.module.css';
 import axios from 'axios';
-
 import { useState, useEffect } from 'react';
-
 import SearchBar from '../SearchBar/SearchBar.jsx';
 import ImageGallery from '../ImageGallery/ImageGallery.jsx';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn.jsx';
 import ErrorMessage from '../ErrorMessage/ErrorMessage.jsx';
 import ImageModal from '../ImageModal/ImageModal.jsx';
 import Loader from '../Loader/Loader.jsx';
-
 import { Image, ApiResponse, SelectedImage } from './App.types';
 
 const App = () => {

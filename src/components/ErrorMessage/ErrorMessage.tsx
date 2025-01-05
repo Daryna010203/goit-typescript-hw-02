@@ -1,6 +1,8 @@
 import css from './ErrorMessage.module.css';
+import { ErrorMessageProps } from './ErrorMessage.types';
 
-const ErrorMessage = ({ error }: any) => {
+const ErrorMessage = ({ error }: ErrorMessageProps) => {
+  console.log(error);
   return (
     <div>
       <p>
